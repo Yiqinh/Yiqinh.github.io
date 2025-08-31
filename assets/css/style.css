@@ -79,9 +79,9 @@ header a {
 .profile-pic {
     width: 200px;
     height: auto;
-    border-radius: 0;
+    border-radius: 15px;
     margin-bottom: 1rem;
-    border: 3px solid #ddd;
+    border: 3px solid #000000;
 }
 
 /* Projects Grid */
@@ -98,7 +98,7 @@ header a {
 
 .project-card {
     background: #fff;
-    border: 4px solid #000000;
+    border: 2px solid #000000;
     border-radius: 15px;
     overflow: hidden;
     text-align: center;
