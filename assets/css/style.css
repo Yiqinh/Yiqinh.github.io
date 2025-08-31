@@ -81,7 +81,7 @@ header a {
     height: auto;
     border-radius: 15px;
     margin-bottom: 1rem;
-    border: 3px solid #000000;
+    border: 3px solid hsl(0, 0%, 100%);
 }
 
 /* Projects Grid */
@@ -98,7 +98,7 @@ header a {
 
 .project-card {
     background: #fff;
-    border: 2px solid #000000;
+    border: 2px solid #ffffff;
     border-radius: 15px;
     overflow: hidden;
     text-align: center;
