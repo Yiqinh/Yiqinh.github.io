@@ -3,62 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project 0 | Your Project Title</title>
+    <title>Project 0 | Friends With Your Camera</title>
     <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 <body>
     <header>
         <nav>
-            <h1><a href="../index.html" class="home-link">Yiqin Huang</a></h1>
+            <h1><a href="../index.html" class="home-link">Your Name</a></h1>
             <a href="../index.html#projects">Back to Projects</a>
         </nav>
     </header>
 
     <main class="container project-page">
         <h2>Project 0: Becoming Friends With Your Camera</h2>
-        <p class="project-meta"><strong>Date:</strong> August 2025 | <strong>Course:</strong> CS 180</p>
+        <p class="project-meta"><strong>Date:</strong> August 2025 | <strong>Course:</strong> Intro to Computer Vision</p>
 
         <hr>
 
         <section>
             <h3>1. Project Overview</h3>
             <p>
-                Start with a summary of the project. What was the goal? What problem were you trying to solve?
-                This section should give the reader a high-level understanding of your work.
+                The goal of this project is to develop an intuitive understanding of the relationship between perspective, camera distance, and focal length (zoom). By capturing specific scenes, we can observe how these factors influence the final image, from flattering portraits to dramatic cinematic effects.
             </p>
         </section>
 
         <section>
-            <h3>2. Methodology</h3>
+            <h3>2. Part 1: Selfie: The Wrong Way vs. The Right Way</h3>
             <p>
-                Describe the techniques and algorithms you used. For example, you might have implemented a Gaussian filter.
-                You can even include LaTeX for equations like the 2D Gaussian function:
-                $G(x, y) = \frac{1}{2\pi\sigma^2} e^{-\frac{x^2+y^2}{2\sigma^2}}$.
-                Explain *why* you chose this approach.
+                For this part, I took two portraits. The first was a selfie taken from a very close distance with a wide-angle lens. The second was taken from several feet away, using zoom to make the face appear the same size in the frame.
             </p>
             
-        </section>
+            <h4>Results</h4>
+            <div class="results-gallery">
+                <figure>
+                    <img src="https://via.placeholder.com/400x500" alt="Distorted close-up selfie">
+                    <figcaption>Fig 1: The "wrong way." A close-up, wide-angle shot.</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://via.placeholder.com/400x500" alt="Flattering portrait from a distance">
+                    <figcaption>Fig 2: The "right way." A distant, zoomed-in shot.</figcaption>
+                </figure>
+            </div>
 
-        <section>
-            <h3>3. Results & Discussion</h3>
+            <h4>Discussion</h4>
             <p>
-                Showcase your results here! Use images and tables to display your findings. Compare the "before" and "after" images.
-                Discuss what the results mean. Did your method work well? What were the limitations?
+                The second portrait (Fig 2) is clearly more flattering. The distortion in the first selfie (Fig 1) is caused by **perspective**, not the lens itself. When the camera is very close, the relative distance between my nose and my ears is significant compared to the overall distance to the camera. This exaggerates the features closest to the camera. By stepping back and zooming in, I decreased this relative distance, resulting in a portrait with more natural, compressed facial proportions.
             </p>
         </section>
 
+        <hr>
+
         <section>
-            <h3>4. Conclusion</h3>
+            <h3>3. Part 2: Architectural Perspective Compression</h3>
             <p>
-                Briefly summarize the project and your key takeaways. What did you learn?
-                What are the potential next steps or improvements?
+                This experiment reverses the procedure from Part 1. I first took a telephoto (zoomed-in) shot of a long path on campus. Then, I walked closer and took a wide-angle shot, framing the main subject to be a similar size.
+            </p>
+
+            <h4>Results</h4>
+            <div class="results-gallery">
+                <figure>
+                    <img src="https://via.placeholder.com/600x400" alt="Telephoto shot of a long street">
+                    <figcaption>Fig 3: A telephoto shot from a distance, which compresses perspective.</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://via.placeholder.com/600x400" alt="Wide-angle shot from close up">
+                    <figcaption>Fig 4: A wide-angle shot from closer up, which expands perspective.</figcaption>
+                </figure>
+            </div>
+
+            <h4>Discussion</h4>
+            <p>
+                The telephoto image (Fig 3) appears "flattened." Objects in the foreground and background seem closer together than they actually are. This is **perspective compression**. Because the camera is far away, the large distances between objects along the path are small relative to the camera's distance. In the wide-angle shot (Fig 4), the camera is closer, which exaggerates the sense of depth and makes the path seem much longer.
+            </p>
+        </section>
+        
+        <hr>
+
+        <section>
+            <h3>4. Part 3: The Dolly Zoom (Vertigo Effect)</h3>
+            <p>
+                The dolly zoom is a famous cinematic effect that keeps a subject the same size in the frame while the background's perspective changes dramatically. To achieve this, I moved the camera backward away from a subject while simultaneously zooming in.
+            </p>
+
+            <h4>Result</h4>
+            <div class="results-gallery">
+                <figure>
+                    <img src="https://via.placeholder.com/800x450" alt="GIF of the dolly zoom effect">
+                    <figcaption>Fig 5: An animated GIF showing the dolly zoom. The subject remains static as the background appears to rush away.</figcaption>
+                </figure>
+            </div>
+
+            <h4>Discussion</h4>
+            <p>
+                This effect works by combining two opposite actions. The physical movement of the camera (the "dolly") changes the perspective, altering the relative size and position of background objects. Simultaneously, adjusting the zoom (focal length) counteracts this movement to keep the main subject at a constant size. The result is a visually unsettling effect where the world seems to warp around a static subject.
             </p>
         </section>
 
     </main>
 
     <footer>
-        <p>&copy; 2025 Yiqin Huang. All rights reserved.</p>
+        <p>&copy; 2025 Your Name. All rights reserved.</p>
     </footer>
 </body>
 </html>
