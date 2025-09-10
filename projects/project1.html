@@ -25,14 +25,61 @@
                 This project automatically restores the pioneering color photographs of Sergei Prokudin-Gorskii,
                 who documented the early 20th century Russian Empire by capturing three monochrome exposures (red, green, and blue). 
                 The core challenge is that the 3 color channels are misaligned. My program solves this by splitting the image into its three color channels and calculating the precise displacement needed to combine them into a single, vibrant photograph. 
-                To efficiently process the massive, high resolution files, I implemented a recursive pyramid algorithm, which rapidly finds the optimal alignment by comparing the channels using Normalized Correlation.
+                To efficiently process the massive, high resolution files, I implemented a recursive pyramid algorithm, which rapidly finds the optimal alignment by comparing the channels using Normalized Cross Correlation.
             </p>
         </section>
         
         <hr>
 
         <section>
-            <h3>Part 1: Selfie</h3>
+            <h3>Methodology</h3>
+
+            <h4>A Naive Algorithm</h4>
+            <p>
+                First thing I had to do was split the input image. Each file is a single tall image containing three stacked color channels.
+                
+                
+
+                Since the filter order was Blue, Green, then Red from top to bottom, I just used NumPy slicing to divide the image's height by three.
+            </p>
+
+            <p>
+                I first tried a simple brute force search, checking every possible shift in a [-15, 15] window. 
+                To score how good a match was, I tried to maximize Normalized Cross-Correlation (NCC). I found NCC to be a much better optimization objective than Euclidean distance. This worked good for small image files.
+            </p>
+            
+            <h4>Optimized Algorithm</h4>
+
+            <p>
+                The speedup involves implementing a mult-scaled pyramid algorithm (recursive). Instead of a massive search on the full res image, the algorithm works like this:
+
+                Recursive Downscale: I create smaller versions of the color channels, scaling them down by a factor of 2 at each step of the recursive pyramid. 
+                By downscaling the image at each level there are fewer pixels to search through.
+                
+                Base case: At the smallest, most pixelated level, I run the simple brute force search. It's super fast here because the image is tiny. This gives a rough estimate of the image shift.
+
+                Recursing Up: At the next level, I upscale (2x) the estimated displacement found in the previous step. 
+                The key is that I only need to do a tiny brute force search (like [-2, 2] pixels) around this estimate to refine it. This reduces the search space dramatically.
+                The algorithm will recursively refine this displacement estimate at each recursive level.
+
+                Repeat: I repeat this process, moving up the pyramid and refining the alignment at each level until I get back to the original, full resolution image.
+            </p>
+
+            <h4>Problems Encountered</h4>
+
+            <p>
+                When you shift an image using np.roll, the pixels that fall off one side wrap around to the other. This meant my NCC score was getting polluted. 
+                The trick was to crop a fraction from the edges of the image after shifting but before scoring. 
+                By slicing pixels off all sides of the image, I ensured I was only comparing the valid, central part of the photograph. 
+                This simple cropping step made the alignment much more accurate. I used a hard coded cropping ratio, which took 0.05 off each edge. 
+                In the recursive algorithm, I found that having a cropping ratio of 0 on the base case improved alignment accuracy.
+            </p>
+
+
+        </section>
+
+        <section>
+            <h3>Small Images</h3>
             <div class="results-gallery">
                 <figure>
                     <img src="https://Yiqinh.github.io/pictures/closeup.jpeg" alt="Distorted close-up selfie" class="profile-pic">
@@ -58,10 +105,6 @@
                 </figure>
             </div>
 
-            <h4>Discussion</h4>
-            <p>
-                The second portrait is clearly more natural. The first selfie exaggerates facial features closest to the camera. By stepping back and zooming in, the portrait becomes more natural and facial proportions are compressed.
-            </p>
         </section>
 
         
