@@ -37,12 +37,12 @@
             <h4>A Naive Algorithm</h4>
             <p>
                 First thing I had to do was split the input image. Each file is a single tall image containing three stacked color channels.
-                Since the filter order was Blue, Green, then Red from top to bottom, I just used NumPy slicing to divide the image's height by three.
+                Since the filter order was blue, green, then red from top to bottom, I just used NumPy slicing to divide the image's height by three.
             </p>
 
             <p>
                 I use a simple brute force search, checking every possible shift in a [-15, 15] window. 
-                To score how good a match was, I try to maximize Normalized Cross-Correlation (NCC). I find NCC to be a much better optimization objective than Euclidean distance. This works good for small image files.
+                To score how good an image shift is, I try to maximize Normalized Cross-Correlation (NCC) between two color channels. I find NCC to be a much better optimization objective than Euclidean distance. This works good for small image files.
             </p>
             
             <h4>Optimized Algorithm</h4>
@@ -83,6 +83,10 @@
 
 
         </section>
+        
+        <hr>
+        <h3>Gallery</h3>
+        <hr>
 
         <section>
             <h3>Small Images</h3>
