@@ -77,7 +77,7 @@
                 When you shift an image using np.roll, the pixels that fall off one side wrap around to the other. This meant my NCC score was getting polluted. 
                 The trick was to crop a fraction from the edges of the image after shifting but before scoring. 
                 By slicing pixels off all sides of the image, I ensured I was only comparing the valid, central part of the photograph. 
-                This simple cropping step made the alignment much more accurate. I used a hard coded cropping ratio, which took 0.05 off each edge. 
+                This simple cropping step made the alignment much more accurate. I used a hard coded cropping ratio, which took 0.04 off each edge. 
                 In the recursive algorithm, I found that having a cropping ratio of 0 on the base case improved alignment accuracy.
             </p>
 
@@ -85,35 +85,24 @@
         </section>
         
         <hr>
-        <h3>Gallery</h3>
-  
-        <section>
-            <h4>Small Images</h4>
-            <div class="results-gallery">
-                <figure>
-                    <img src="https://Yiqinh.github.io/pictures/closeup.jpeg" alt="Distorted close-up selfie" class="profile-pic">
-                    <figcaption>a close up shot.</figcaption>
-                </figure>
-                <figure>
-                    <img src="https://Yiqinh.github.io/pictures/farther.jpeg" alt="Flattering portrait from a distance" class="profile-pic">
-                    <figcaption>a zoomed in shot.</figcaption>
-                </figure>
-                                <figure>
-                    <img src="https://Yiqinh.github.io/pictures/farther.jpeg" alt="Flattering portrait from a distance" class="profile-pic">
-                    <figcaption>a zoomed in shot.</figcaption>
-                </figure>
-                </figure>
-                                <figure>
-                    <img src="https://Yiqinh.github.io/pictures/farther.jpeg" alt="Flattering portrait from a distance" class="profile-pic">
-                    <figcaption>a zoomed in shot.</figcaption>
-                </figure>
-                </figure>
-                                <figure>
-                    <img src="https://Yiqinh.github.io/pictures/farther.jpeg" alt="Flattering portrait from a distance" class="profile-pic">
-                    <figcaption>a zoomed in shot.</figcaption>
-                </figure>
-            </div>
 
+        <h3>Gallery</h3>
+
+        <p> 
+            Note: offsets are (dy, dx)
+        </p>
+
+        <section class="gallery-section">
+            <div class="gallery-grid">
+                
+                <figure class="gallery-item">
+                    <img src="https://Yiqinh.github.io/pictures/proj_1/emir.jpg" alt="Emir" class="gallery-img">
+                    <h4>Emir</h4>
+                    <figcaption> G: (49, 24) R: (104, 44) </figcaption>
+                </figure>
+
+
+            </div>
         </section>
 
         
