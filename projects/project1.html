@@ -78,7 +78,7 @@
                 The trick was to crop a fraction from the edges of the image after shifting but before scoring. 
                 By slicing pixels off all sides of the image, I ensured I was only comparing the valid, central part of the photograph. 
                 This simple cropping step made the alignment much more accurate. I used a hard coded cropping ratio, which took 0.04 off each edge. 
-                In the recursive algorithm, I found that having a cropping ratio of 0 on the base case improved alignment accuracy.
+                This hard coded ratio did not always work perfectly. A better solution would be to scan the image and automatically adjust this ratio.
             </p>
 
 
@@ -187,6 +187,32 @@
                     <img src="https://Yiqinh.github.io/pictures/proj_1/gen.jpg" class="gallery-img">
                     <h4>Three Generations</h4>
                     <figcaption> G: (55, 13) R: (112, 10) </figcaption>
+                </figure>
+
+            </div>
+        </section>
+
+        <h4>Small Images</h4>
+
+        <section class="gallery-section">
+            <div class="gallery-grid">
+
+                <figure class="gallery-item">
+                    <img src="https://Yiqinh.github.io/pictures/proj_1/sack.jpg" class="gallery-img">
+                    <h4>Sacks Stacked in Storage Room</h4>
+                    <figcaption> G: (52, 15) R: (122, 12) </figcaption>
+                </figure>
+
+                <figure class="gallery-item">
+                    <img src="https://Yiqinh.github.io/pictures/proj_1/river.jpg" class="gallery-img">
+                    <h4>Suna River</h4>
+                    <figcaption> G: (25, -5) R: (102, -13) </figcaption>
+                </figure>
+
+                <figure class="gallery-item">
+                    <img src="https://Yiqinh.github.io/pictures/proj_1/canal.jpg" class="gallery-img">
+                    <h4>Irrigation Canal</h4>
+                    <figcaption> G: (27, 24) R: (46, 49) </figcaption>
                 </figure>
 
             </div>
