@@ -321,6 +321,62 @@
 
             <h4>Part 2.2: Hybrid Images</h4>
 
+            <p>
+                Hybrid images are visual illusions created by merging the low frequency information from one image with the high frequency details from another, 
+                resulting in a single image that appears differently depending on the viewing distance or scale. 
+                This technique leverages human visual perception, where low frequencies dominate at a distance and high frequencies become prominent up close.
+            </p>
+
+            <div class="results-gallery">
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_2/derek_cat_diagram.png" class="pic">
+                    <figcaption>Hybrid Image of Derek and Nutmeg (Sigma1=8, Sigma2=12)</figcaption>
+                </figure>
+            </div>
+
+            <p>
+                Sigma1 (for low pass on im1): This controls the cutoff frequency for the low-frequency component. The Gaussian blur with sigma1 removes high frequencies from im1, leaving the smooth, low frequency structure. 
+                A higher sigma1 lowers the cutoff, making the low pass more aggressive (more blur, so the low-frequency view dominates at even greater distances).
+            </p>
+
+            <p>
+                Sigma2 (for high pass on im2): This controls the cutoff for the high frequency component. 
+                A higher sigma2 lowers the cutoff, meaning you subtract more low frequencies and keep finer high frequency details.
+            </p>
+
+            <p> 
+                My choices for sigma reflects the best frequency cutoffs for my monitor and the distance I can go back in my room.
+            </p>
+
+            <div class="results-gallery">
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_2/reiner.png" class="profile-pic">
+                    <figcaption>Reiner (Attack on Titan)</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_2/titan.png" class="profile-pic">
+                    <figcaption>Armored Titan (Attack on Titan)</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_2/hybrid_titan.png" class="profile-pic">
+                    <figcaption>Reiner + Armored Titan (Attack on Titan)</figcaption>
+                </figure>
+            </div>
+
+            <div class="results-gallery">
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_2/nerd.png" class="profile-pic">
+                    <figcaption>Glasses Emoji</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_2/clown.png" class="profile-pic">
+                    <figcaption>Clown Emoji</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_2/hybrid_clown.png" class="profile-pic">
+                    <figcaption>Hybrid Emoji</figcaption>
+                </figure>
+            </div>
 
         </section>
          
