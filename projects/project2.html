@@ -199,11 +199,48 @@
 
             <h4>Part 2.1: Image "Sharpening"</h4>
 
+            <div class="results-gallery">
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_2/unsharp_filter.png" class="pic">
+                    <figcaption>Unsharp Mask Filter</figcaption>
+                </figure>
+            </div>
+
             <p>
                 The technique essentially boosts edges by deducting a smoothed image version from the original. 
                 Then, it adds these high frequencies back into the original image, creating a sharper image.
-                To form the unsharp masking filter, subtract the Gaussian filter from the unit impulse filter, with σ serving as the control for sharpening intensity.
+                We can combine these operations by making a unsharp mask filter.
+                To form the unsharp mask filter, subtract the Gaussian filter from the unit impulse filter, with σ serving as the control for sharpening intensity.
             </p>
+
+            <p>
+                unsharp_masking_filter = (1 + α) × unit_impulse_filter − α × gaussian_filter
+                = (1 + α)f - α f * g = f * ((1 + α)e - αg)
+            </p>
+
+            <div class="results-gallery">
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_2/low_taj.png" class="profile-pic">
+                    <figcaption>Blurred Taj</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_2/high_taj.png" class="profile-pic">
+                    <figcaption>High Frequency Taj</figcaption>
+                </figure>
+            </div>
+
+            <div class="results-gallery">
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_2/taj_original.png" class="profile-pic">
+                    <figcaption>Original Taj</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_2/taj_sharp.png" class="profile-pic">
+                    <figcaption>Sharpened Taj</figcaption>
+                </figure>
+            </div>
+
+
 
 
         </section>
