@@ -37,7 +37,7 @@
 
         <section>
             <h3>Part 1: Fun with Filters!</h3>
-
+            
             <h4>Part 1.1: Convolutions from Scratch</h4>
 
             <div class="results-gallery">
@@ -61,19 +61,18 @@
 
             <h5>Implementation</h5>
 
-            <div class="results-gallery">
-                <figure>
-                    <img src="https://Yiqinh.github.io/pictures/proj_2/code.png" class="profile-pic">
-                    <figcaption>Naive Implementation of Convolve</figcaption>
-                </figure>
-            </div>
-            
+
+            <figure>
+                <img src="https://Yiqinh.github.io/pictures/proj_2/code.png" class="profile-pic">
+                <figcaption>Naive Implementation of Convolve</figcaption>
+            </figure>
+
+
             <p>
                 The naive implementation demonstrates convolution conceptually but is slow due to Python loops, 
                 while scipy.signal.convolve2d relies on optimized C routines for efficiency, offering faster performance and robust boundary handling.
             </p>
             
-
             <h4>Part 1.2: Finite Difference Operator</h4>
 
             <p>
@@ -160,12 +159,12 @@
                 We can improve efficiency and produce this same result with just ONE convolution. We can convolve the image once with the DoG filter (in both X and Y direction). The DoG filter combines the Gaussian filter and derivative filter.
             </p>
 
-            <div class="results-gallery">
-                <figure>
-                    <img src="https://Yiqinh.github.io/pictures/proj_2/dog_filters.png" class="profile-pic">
-                    <figcaption>DoG Filters</figcaption>
-                </figure>
-            </div>
+
+            <figure>
+                <img src="https://Yiqinh.github.io/pictures/proj_2/dog_filters.png" class="profile-pic">
+                <figcaption>DoG Filters</figcaption>
+            </figure>
+
 
             <p>
                 As you can see below, using DoG produces the same final output as above.
@@ -187,6 +186,8 @@
 
         <section> 
             <h3>Part 2: Fun with Frequencies!</h3>
+
+            <h4>Part 1.1: Convolutions from Scratch</h4>
 
 
         </section>
