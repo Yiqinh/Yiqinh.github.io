@@ -196,6 +196,12 @@
 
             <h4>Part 2.1: Image "Sharpening"</h4>
 
+            <p>
+                The technique essentially boosts edges by deducting a smoothed image version from the original. 
+                Then, it adds these high frequencies back into the original image, creating a sharper image.
+                To form the unsharp masking filter, subtract the Gaussian filter from the unit impulse filter, with σ serving as the control for sharpening intensity.
+            </p>
+
 
         </section>
          
