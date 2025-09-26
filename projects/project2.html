@@ -288,7 +288,36 @@
                 We can also compare the difference in alpha. Here, we see that increasing alpha to be too high makes an image overly sharp. This does not look good.
             </p>
 
+            <div class="results-gallery">
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_2/plane_alpha_10.png" class="pic">
+                    <figcaption>Sharpen Alpha = 10</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_2/plane_alpha_20.png" class="pic">
+                    <figcaption>Sharpen Alpha = 20</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_2/plane_alpha_40.png" class="pic">
+                    <figcaption>Sharpen Alpha = 40</figcaption>
+                </figure>
+            </div>
 
+            <p>
+                Trying to sharpen an existing blurred image also does not work. This is because the unsharp mask filter does NOT add new information. 
+                Blurring the image already led to information lost, which cannot be restored. Unsharp mask filter only highlights existing information.
+            </p>
+
+            <div class="results-gallery">
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_2/curry_pre_blur.png" class="profile-pic">
+                    <figcaption>Blurry Curry</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_2/curry_blur_sharp.png" class="profile-pic">
+                    <figcaption>Sharpened Blurry Curry</figcaption>
+                </figure>
+            </div>
 
 
         </section>
