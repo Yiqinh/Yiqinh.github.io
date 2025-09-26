@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project 2: Fun with Filters and Frequencies!</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <h1><a href="../index.html" class="home-link">Yiqin Huang</a></h1>
+            <a href="../index.html#projects">Back to Projects</a>
+        </nav>
+    </header>
+
+    <main class="container project-page">
+        <h2>Project 2: Fun with Filters and Frequencies!</h2>
+
+        <hr>
+        
+        <section>
+            <h3>Overview</h3>
+            <p>
+                This project examines key image processing methods, emphasizing 2D convolutions and frequency domain transformations. 
+                It aims to develop core understandings of filter effects on images while exploring advanced techniques such as sharpening, hybrid image generation, and multi-resolution blending.
+            </p>
+        </section>
+
+        <hr>
+        
+        <section>
+            <h3>Art Gallery</h3>
+        </section>
+        
+        <hr>
+
+        <section>
+            <h3>Part 1: Fun with Filters!</h3>
+
+            <h4>Part 1.1: Convolutions from Scratch</h4>
+
+            <div class="results-gallery">
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_2/selfie_original.png" class="profile-pic">
+                    <figcaption>Original</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_2/selfie_box.png" class="profile-pic">
+                    <figcaption>Box Filtered</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_2/selfie_dx.png" class="profile-pic">
+                    <figcaption>Convolve Dx</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_2/selfie_dy.png" class="profile-pic">
+                    <figcaption>Convolve Dy</figcaption>
+                </figure>
+            </div>
+
+            <h5>Implementation</h5>
+            <div class="results-gallery">
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_2/convolve_naive.jpeg" class="profile-pic">
+                    <figcaption>Naive Implementation of Convolve</figcaption>
+                </figure>
+            </div>
+
+            <p>
+                The naive implementation demonstrates convolution conceptually but is slow due to Python loops, 
+                while scipy.signal.convolve2d relies on optimized C routines for efficiency, offering faster performance and robust boundary handling.
+            </p>
+
+            <h4>Part 1.2: Finite Difference Operator</h4>
+
+            <p>
+                I first convolved the cameraman image with finite difference operators to get the x and y derivatives. 
+                Then, I calculated the gradient magnitude image to highlight edges. 
+                Finally, I binarized this image using a threshold that balances showing real edges and suppressing noise.
+            </p>
+
+            <div class="results-gallery">
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_2/camera_dx.png" class="profile-pic">
+                    <figcaption>Convolved with Dx (Vertical Edges)</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_2/camera_dy.png" class="profile-pic">
+                    <figcaption>Convolved with Dy (Horizontal Edges)</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_2/camera_grad.png" class="profile-pic">
+                    <figcaption>Gradient Magnitude (Noisy)</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_2/camera_edge.png" class="profile-pic">
+                    <figcaption>Edge Image (Binary Threshold)</figcaption>
+                </figure>
+            </div>
+
+            <p>
+                As you can see, the edge image is slightly noisy. It picks up a lot of unnecessary details.
+            </p>
+
+            <h4>Part 1.3: Derivative of Gaussian (DoG) Filter</h4>
+
+            <p>
+                To reduce noise from the difference operator, I first blurred the image by convolving it with a Gaussian filter. 
+                Then, I repeated the edge detection steps computing derivatives and binarizing the gradient magnitude on this smoothed image for cleaner results.
+            </p>
+
+            <div class="results-gallery">
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_2/camera_original.png" class="profile-pic">
+                    <figcaption>Original</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_2/camera_gauss.png" class="profile-pic">
+                    <figcaption>Gaussian Filtered (Smooth)</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_2/camera_gauss_dx.png" class="profile-pic">
+                    <figcaption>Convolve Smooth Image with Dx</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_2/camera_gauss_dy.png" class="profile-pic">
+                    <figcaption>Convolve Smooth Image with Dy</figcaption>
+                </figure>
+            </div>
+
+            <p>
+                Then, I use these filtered image to create a cleaner edge map.
+            </p>
+
+            <div class="results-gallery">
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_2/camera_grad.png" class="profile-pic">
+                    <figcaption>Gradient Magnitude (Smooth)</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_2/camera_gauss_edge.png" class="profile-pic">
+                    <figcaption>Smooth Edge Map (Denoise)</figcaption>
+                </figure>
+            </div>
+
+            <p>
+                As you can see, the edge map created is a lot less noisy. The edges produced by DoG are a lot thicker and smoother compared to finite difference.
+            </p>
+
+            <p>
+                We can improve efficiency and produce this same result with just ONE convolution. We can convolve the image once with the DoG filter (in both X and Y direction). The DoG filter combines the Gaussian filter and derivative filter.
+            </p>
+
+            <div class="results-gallery">
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_2/dog_filter.png" class="profile-pic">
+                    <figcaption>DoG Filters</figcaption>
+                </figure>
+            </div>
+
+            <p>
+                As you can see below, using DoG produces the same final output as above.
+            </p>
+
+            <div class="results-gallery">
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_2/camera_grad.png" class="profile-pic">
+                    <figcaption>Gradient Magnitude (DoG)</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_2/camera_gauss_edge.png" class="profile-pic">
+                    <figcaption>Edge Map (DoG)</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <section> 
+            <h3>Part 2: Fun with Frequencies!</h3>
+
+            <hr>
+
+        </section>
+         
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Yiqin Huang. All rights reserved.</p>
+    </footer>
+</body>
+</html>
