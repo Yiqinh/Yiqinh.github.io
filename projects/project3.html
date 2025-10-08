@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project 3A: IMAGE WARPING and MOSAICING!</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <h1><a href="../index.html" class="home-link">Yiqin Huang</a></h1>
+            <a href="../index.html#projects">Back to Projects</a>
+        </nav>
+    </header>
+
+    <main class="container project-page">
+        <h2>Project 3A: IMAGE WARPING and MOSAICING!</h2>
+        
+        <hr>
+        
+        <section>
+            <h3>Overview</h3>
+            <p>
+                This project implements image mosaicing by capturing multiple photographs and seamlessly stitching them into panoramic images. 
+                The process involves computing homographies between image pairs to establish geometric correspondences, 
+                then applying projective warping and resampling to align the images into a common frame. Through careful compositing, 
+                the warped images are blended to create wide angle mosaics that exceed the field of view of individual photographs, 
+                demonstrating the core principles behind modern panoramic photography.
+            </p>
+        </section>
+        
+        <hr>
+
+        <section>
+            <h3>A.1: Shoot the Pictures</h3>
+        
+            <div class="results-gallery">
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_3/IMG_5051.png" class="pic">
+                    <figcaption>Left Image</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_3/IMG_5051.png" class="pic">
+                    <figcaption>Right Image</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_3/street_left.png" class="pic">
+                    <figcaption>Left Image</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_3/street_right.png" class="pic">
+                    <figcaption>Right Image</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_3/building_left.png" class="pic">
+                    <figcaption>Left Image</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_3/building_right.png" class="pic">
+                    <figcaption>Right Image</figcaption>
+                </figure>
+            </div>
+
+            <p>
+                Note: Either Left or Right image is used as the fixed center of projection for the Mosaic
+            </p>
+
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Yiqin Huang. All rights reserved.</p>
+    </footer>
+</body>
+</html>
