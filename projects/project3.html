@@ -5,6 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Project 3A: IMAGE WARPING and MOSAICING!</title>
     <link rel="stylesheet" href="../assets/css/style.css">
+    
+    <!-- MathJax for rendering mathematical equations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    
+    <style>
+        .equation-container {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background-color: #f5f5f5;
+            border-radius: 8px;
+            overflow-x: auto;
+        }
+        
+        .equation-container .MathJax {
+            font-size: 1.2em;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -65,6 +82,67 @@
             <p>
                 Note: Either Left or Right image is used as the fixed center of projection for the Mosaic
             </p>
+
+        </section>
+
+        <hr>
+
+        <section>
+            <h3>A.2: Recover Homographies</h3>
+            <p>
+                The homography transformation is computed by solving the following system of linear equations (for one correspondence pair in the form Ah = b):
+            </p>
+            
+            <div class="equation-container">
+                $$
+                \begin{bmatrix}
+                x & y & 1 & 0 & 0 & 0 & -ux & -uy \\
+                0 & 0 & 0 & x & y & 1 & -vx & -vy
+                \end{bmatrix}
+                \times
+                \begin{bmatrix}
+                h_1 \\ h_2 \\ h_3 \\ h_4 \\ h_5 \\ h_6 \\ h_7 \\ h_8
+                \end{bmatrix}
+                =
+                \begin{bmatrix}
+                u \\ v
+                \end{bmatrix}
+                $$
+            </div>
+
+            <p>
+                Where (x, y) are the coordinates in the source image and (u, v) are the corresponding coordinates in the destination image. 
+                This system is solved using multiple point correspondences to determine the homography parameters h₁ through h₈. For homographies, 
+                since there are 8 degrees of freedom, we need a minimum of 4 pairs of correspondences (2 equations each pair). However, it is better to
+                use more than 4 correspondence points and solve a overdefined system of equations (Ah = b) for h using least squares. This accounts for slight errors in correspondence points.
+            </p>
+
+            <h4>Examples of Correspondences</h4>
+
+            <div class="results-gallery">
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_3/labeled_left.png" class="profile-pic">
+                    <figcaption>Left Image Correspondences</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_3/labeled_right.png" class="profile-pic">
+                    <figcaption>Right Image Correspondences</figcaption>
+                </figure>
+            </div>
+
+            <p>
+                Plug these correspondences into the Ah = b equation above and solving for the optimal h using least squares. Reshape h into the 3x3 homography matrix:
+            </p>
+
+            <div class="equation-container">
+                $$
+                \begin{bmatrix}
+                1.40257957 & -0.01136527 & -310.541182 \\
+                0.26268662 & 1.25978674 & -127.907641 \\
+                0.00055852 & 0.00000293 & 1.00000000
+                \end{bmatrix}
+                $$
+            </div>
 
         </section>
 
