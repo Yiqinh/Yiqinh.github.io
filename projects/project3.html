@@ -272,6 +272,23 @@
                 </figure>
             </div>
 
+            <h4> 
+                Algorithm Implementation
+            </h4>
+
+            <p><strong>Step 1: Geometric Alignment</strong> - I compute a homography matrix from corresponding points between the two images, then warp the second image to align with the first image's coordinate frame.</p>
+            
+            <p><strong>Step 2: Canvas Setup</strong> - I calculate the bounding box needed to fit both images and determine the placement offsets for each image on this expanded canvas.</p>
+            
+            <p><strong>Step 3: Weight Map Generation</strong> - For the overlapping region, I use distance transforms to create blend weights. Each pixel's weight is based on its distance from the image exclusive regions. Pixels closer to image 1's exclusive area favor image 1, and vice versa.</p>
+            
+            <p><strong>Step 4: Multi Resolution Decomposition</strong> - I build 2 level Laplacian pyramids for both images</p>
+            
+            <p><strong>Step 5: Pyramid Blending</strong> - At each pyramid level, I blend the corresponding frequency bands using the weight maps, ensuring smooth transitions.</p>
+            
+            <p><strong>Step 6: Reconstruction</strong> - I reconstruct the final panorama from the blended pyramid levels.</p>
+            
+            <p>This blending approach eliminates visible seams by blending different frequency components appropriately.</p>
 
         </section>
 
