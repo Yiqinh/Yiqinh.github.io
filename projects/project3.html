@@ -151,11 +151,11 @@
 
             <div class="results-gallery">
                 <figure>
-                    <img src="https://Yiqinh.github.io/pictures/proj_3/warped_noodle.png" class="profile-pic">
-                    <figcaption>Original Image: Noodle</figcaption>
+                    <img src="https://Yiqinh.github.io/pictures/proj_3/warp_cookie.png" class="profile-pic">
+                    <figcaption>Original Image: Cookie</figcaption>
                 </figure>
             </div>
-            
+
             <div class="results-gallery">
                 <figure>
                     <img src="https://Yiqinh.github.io/pictures/proj_3/cookie_unwarp_homography_nn.png" class="profile-pic">
@@ -163,6 +163,24 @@
                 </figure>
                 <figure>
                     <img src="https://Yiqinh.github.io/pictures/proj_3/cookie_unwarp_homography_bl.png" class="profile-pic">
+                    <figcaption>Warped Bilinear Interpolation</figcaption>
+                </figure>
+            </div>
+
+            <div class="results-gallery">
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_3/warped_noodle.png" class="profile-pic">
+                    <figcaption>Original Image: Noodle</figcaption>
+                </figure>
+            </div>
+
+            <div class="results-gallery">
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_3/noodle_unwarp_homography_nn.png" class="profile-pic">
+                    <figcaption>Warped Nearest Neighbor</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_3/noodle_unwarp_homography_bl.png" class="profile-pic">
                     <figcaption>Warped Bilinear Interpolation</figcaption>
                 </figure>
             </div>
@@ -184,6 +202,17 @@
                     <figcaption>Warped Bilinear Interpolation</figcaption>
                 </figure>
             </div>
+
+            <h4>
+                Discussion
+            </h4>
+            <p>
+                Both nearest neighbor and bilinear interpolation methods worked well. However, bilinear interpolation
+                offers subtle improvements. In the "Poster" image example, the borders of the Japanese characters
+                in the bilinear interpolation method are clearer than in the nearest neighbor method. The nearest neighbor
+                method makes these borders slightly more blurry and less clearly defined. Nonetheless, the nearest neighbor
+                interpolation method is almost two times as fast, making it good enough if speed is a priority.
+            </p>
 
         </section>
 
