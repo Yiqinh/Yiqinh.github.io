@@ -210,8 +210,9 @@
                 Both nearest neighbor and bilinear interpolation methods worked well. However, bilinear interpolation
                 offers subtle improvements. In the "Poster" image example, the borders of the Japanese characters
                 in the bilinear interpolation method are clearer than in the nearest neighbor method. The nearest neighbor
-                method makes these borders slightly more blurry and less clearly defined. Nonetheless, the nearest neighbor
-                interpolation method is slightly faster, making it good enough if speed is a priority (when both functions are vectorized using NumPy).
+                method makes these borders slightly more blurry and less clearly defined. When both functions are vectorized,
+                the speed is identical at 0.1 seconds. Thus, the bilinear interpolation method should be used as default.
+                For the naive non vectorized functions, the nearest neighbor method is more than 2 times faster.
             </p>
 
         </section>
