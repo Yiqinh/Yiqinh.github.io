@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project 3A: IMAGE WARPING and MOSAICING!</title>
+    <title>Project 3: [Auto]Stitching Photo Mosaics</title>
     <link rel="stylesheet" href="../assets/css/style.css">
     
     <!-- MathJax for rendering mathematical equations -->
@@ -32,7 +32,7 @@
     </header>
 
     <main class="container project-page">
-        <h2>Project 3A: IMAGE WARPING and MOSAICING!</h2>
+        <h2>Project 3: [Auto]Stitching Photo Mosaics</h2>
         
         <hr>
         
@@ -290,6 +290,60 @@
             <p><strong>Step 6: Reconstruction</strong> - I reconstruct the final panorama from the blended pyramid levels.</p>
             
             <p>This blending approach eliminates visible seams by blending different frequency components appropriately.</p>
+
+        </section>
+
+        <hr>
+
+        <section>
+            <h3>B.1: Harris Corner Detection</h3>
+
+            <div class="results-gallery">
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_3/part_b/harris_mindist_1.png" class="pic">
+                    <figcaption>Harris Corner (mindist=1)</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_3/part_b/harris_mindist_10.png" class="pic">
+                    <figcaption>Harris Corner (mindist=10)</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_3/part_b/anms_mindist_1.png" class="pic">
+                    <figcaption>ANMS Filtered (mindist=1)</figcaption>
+                </figure>
+            </div>
+
+            <p>
+                The Harris detector evaluates the local gradient structure to find points where intensity changes occur 
+                in multiple directions. However, these corners tend to cluster heavily in high texture regions, even with a higher minimum distance.
+            </p>
+
+            <p>
+                I applied Adaptive Non Maximal Suppression (ANMS) to select well distributed corners across the image. 
+                ANMS ranks corners by their suppression radius, which is the distance to the nearest stronger corner (scaled by c_robust factor). 
+                This ensures features are spread throughout the scene rather than concentrated in textured areas.
+            </p>
+
+            <p>
+                The computational overhead of ANMS was noticeable but worthwhile given the 
+                substantial improvement in feature distribution quality.
+            </p>
+
+        </section>
+
+        <section>
+            <h3>B.2: Feature Descriptor Extraction</h3>
+
+            <div class="results-gallery">
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_3/part_b/campanile_descriptors.png" class="pic">
+                    <figcaption>Labeled Correspondences (Descriptors)</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_3/part_b/descriptors_list.png" class="pic">
+                    <figcaption>Feature Descriptor Patches</figcaption>
+                </figure>
+
 
         </section>
 
