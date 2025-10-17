@@ -346,13 +346,38 @@
             </div>
 
             <p>
-                I extracted 8×8 feature descriptors for each corner by downsampling from a 40×40 pixel window. 
+                I extracted 8×8 feature descriptors for each auto detected corner by downsampling from a 40×40 pixel window. 
                 Each descriptor was bias/gain normalized (zero mean, unit standard deviation) to achieve invariance to intensity changes. 
                 Above images show example extracted descriptors from various image regions.
             </p>
 
+        </section>
+
+        <section>
+            <h3>B.3: Feature Matching</h3>
+
+            <div class="results-gallery">
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_3/part_b/feature_match_A.png" class="profile-pic">
+                    <figcaption></figcaption>
+                </figure>
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_3/part_b/feature_match_B.png" class="profile-pic">
+                    <figcaption></figcaption>
+                </figure>
+            </div>
+            
+            <p>
+                To establish correspondences between images, I implemented feature matching using nearest neighbor distance ratios. 
+                For each descriptor in the first image, I computed its Euclidean distance to all descriptors in the second image. 
+                Following Lowe's ratio test, a match was accepted only if 
+                the distance to the nearest neighbor was sufficiently smaller than the distance to the second nearest neighbor, using a hard coded threshold.
+                The above images show the automatically matched correspondences.
+            </p>
 
         </section>
+
+        
 
     </main>
 
