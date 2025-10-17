@@ -300,16 +300,16 @@
 
             <div class="results-gallery">
                 <figure>
-                    <img src="https://Yiqinh.github.io/pictures/proj_3/part_b/harris_mindist_1.png" class="pic">
-                    <figcaption>Harris Corner (mindist=1)</figcaption>
+                    <img src="https://Yiqinh.github.io/pictures/proj_3/part_b/harris_mindist_1.png" class="profile-pic">
+                    <figcaption>Harris Corner (min_dist=1)</figcaption>
                 </figure>
                 <figure>
-                    <img src="https://Yiqinh.github.io/pictures/proj_3/part_b/harris_mindist_10.png" class="pic">
-                    <figcaption>Harris Corner (mindist=10)</figcaption>
+                    <img src="https://Yiqinh.github.io/pictures/proj_3/part_b/harris_mindist_10.png" class="profile-pic">
+                    <figcaption>Harris Corner (min_dist=10)</figcaption>
                 </figure>
                 <figure>
-                    <img src="https://Yiqinh.github.io/pictures/proj_3/part_b/anms_mindist_1.png" class="pic">
-                    <figcaption>ANMS Filtered (mindist=1)</figcaption>
+                    <img src="https://Yiqinh.github.io/pictures/proj_3/part_b/anms_mindist_1.png" class="profile-pic">
+                    <figcaption>ANMS Filtered (min_dist=1)</figcaption>
                 </figure>
             </div>
 
@@ -336,13 +336,20 @@
 
             <div class="results-gallery">
                 <figure>
-                    <img src="https://Yiqinh.github.io/pictures/proj_3/part_b/campanile_descriptors.png" class="pic">
+                    <img src="https://Yiqinh.github.io/pictures/proj_3/part_b/campanile_descriptors.png" class="profile-pic">
                     <figcaption>Labeled Correspondences (Descriptors)</figcaption>
                 </figure>
                 <figure>
                     <img src="https://Yiqinh.github.io/pictures/proj_3/part_b/descriptors_list.png" class="pic">
                     <figcaption>Feature Descriptor Patches</figcaption>
                 </figure>
+            </div>
+
+            <p>
+                I extracted 8×8 feature descriptors for each corner by downsampling from a 40×40 pixel window. 
+                Each descriptor was bias/gain normalized (zero mean, unit standard deviation) to achieve invariance to intensity changes. 
+                Above images show example extracted descriptors from various image regions.
+            </p>
 
 
         </section>
