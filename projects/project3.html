@@ -377,7 +377,83 @@
 
         </section>
 
-        
+        <section>
+            <h3>B.4: RANSAC for Robust Homography</h3>
+
+            <p>
+                While feature matching produces many correspondences, not all pairs are correctly matched.
+                
+                Outliers from mismatched features can severely degrade homography estimation if all matches are used naively. 
+                To compute a robust homography, I use RANSAC.
+                This algorithm iteratively fits homographies to random subsets of matches and identifies the largest set of 
+                inliers consistent with a single transformation. The homography is then recomputed using only 
+                these inliers.
+            </p>
+    
+            <div>
+                <h4>RANSAC Algorithm</h4>
+            
+                <ol>
+                    <li><strong>Randomly sample 4 point correspondences</strong> from the matched feature pairs. Four points are the minimum needed to uniquely determine a homography matrix.</li>
+                    
+                    <li><strong>Compute the homography H</strong> using these 4 point pairs. This can be done by solving a system of linear equations.</li>
+                    
+                    <li><strong>Transform all points</strong> from image 1 using the computed homography H and calculate their distance to the corresponding points in image 2.</li>
+                    
+                    <li><strong>Count inliers</strong>: points are inliers if their reprojection error (distance between transformed point and actual correspondence) is below the threshold.</li>
+                                
+                    <li><strong>Repeat previous steps</strong> for the specified number of iterations for the largest set of inlier points</li>
+                    
+                    <li><strong>Recompute the final homography</strong> using all inliers from the best model (least squares)</li>
+                </ol>
+
+            </div>
+
+            <div class="results-gallery">
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_3/part_b/auto_campanile.png" class="profile-pic">
+                    <figcaption>Auto Stitched Campanile Mosaic</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_3/campanile.png" class="profile-pic">
+                    <figcaption>Manual Stitched Campanile Mosaic</figcaption>
+                </figure>
+            </div>
+
+            <div class="results-gallery">
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_3/part_b/auto_street.png" class="profile-pic">
+                    <figcaption>Auto Stitched Street Mosaic</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_3/street.png" class="profile-pic">
+                    <figcaption>Manual Stitched Street Mosaic</figcaption>
+                </figure>
+            </div>
+
+
+            <div class="results-gallery">
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_3/part_b/auto_building.png" class="profile-pic">
+                    <figcaption>Auto Stitched Building Mosaic</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_3/building.png" class="profile-pic">
+                    <figcaption>Manual Stitched Building Mosaic</figcaption>
+                </figure>
+            </div>
+
+            <p>
+                The automatically stitched mosaics achieve quality comparable to
+                manually stitched results, if not better. This is particularly evident in the "Building" mosaic, where the 
+                overlapping region contains many trees and plants. While such textured vegetation lacks distinct landmarks 
+                for manual selection, the automatic corner detector reliably identifies subtle gradient features, 
+                demonstrating the algorithm's ability to handle regions that are more challenging for human annotation. The automatic
+                mosaic is less blurry on the border.
+            </p>
+
+        </section>
+
 
     </main>
 
