@@ -55,7 +55,7 @@
                     <figcaption>Tags 1</figcaption>
                 </figure>
                 <figure>
-                    <img src="https://Yiqinh.github.io/pictures/proj_4/aruco_1.jpeg" class="profile-pic">
+                    <img src="https://Yiqinh.github.io/pictures/proj_4/aruco_2.jpeg" class="profile-pic">
                     <figcaption>Tags 2</figcaption>
                 </figure>
             </div>
@@ -75,7 +75,7 @@
                     <figcaption>Scan 1</figcaption>
                 </figure>
                 <figure>
-                    <img src="https://Yiqinh.github.io/pictures/proj_4/vb_1.jpeg" class="profile-pic">
+                    <img src="https://Yiqinh.github.io/pictures/proj_4/vb_2.jpeg" class="profile-pic">
                     <figcaption>Scan 2</figcaption>
                 </figure>
             </div>
@@ -147,8 +147,67 @@
 
             <div class="results-gallery">
                 <figure>
-                    <img src="https://Yiqinh.github.io/pictures/proj_4/coyote_training_progression.png" class="pic">
+                    <img src="https://Yiqinh.github.io/pictures/proj_4/coyote_training_prog.png" class="pic">
                     <figcaption>Test Image Training Progression</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_4/panda_train_prog.png" class="pic">
+                    <figcaption>Panda Training Progression</figcaption>
+                </figure>
+            </div>
+
+            <p>
+                As can be seen in the training images, the netowrk gradually learns the details, with clear improvements by iteration 200.
+            </p>
+
+            <div class="results-gallery">
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_4/L2_64.png" class="profile-pic">
+                    <figcaption>L=2, Width=64</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_4/L2_256.png" class="profile-pic">
+                    <figcaption>L=2, Width=256</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_4/L10_64.png" class="profile-pic">
+                    <figcaption>L=10, Width=64</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_4/L10_256.png" class="profile-pic">
+                    <figcaption>L=10, Width=256</figcaption>
+                </figure>
+            </div>
+            <div class="results-gallery">
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_4/panda_L2_64.png" class="profile-pic">
+                    <figcaption>L=2, Width=64</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_4/panda_L2_256.png" class="profile-pic">
+                    <figcaption>L=2, Width=256</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_4/panda_L10_64.png" class="profile-pic">
+                    <figcaption>L=10, Width=64</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_4/panda_L10_256.png" class="profile-pic">
+                    <figcaption>L=10, Width=256</figcaption>
+                </figure>
+            </div>
+            <p>
+                Both positional encoding depth (L) and model width significantly impact prediction quality.
+                Lower L values result in only lower frequencies being captured, resulting in a blurry mess.
+                Higher L values allow linear networks to learn higher frequency details in the image.
+                Lower model width result in less sharp images.
+                Higher model widths result in sharper cleaner images and edges.
+            </p>
+
+            <div class="results-gallery">
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_4/panda_psnr.png" class="pic">
+                    <figcaption>Panda Train PSNR (L=10, width=256, batch_size=10k) </figcaption>
                 </figure>
             </div>
 
