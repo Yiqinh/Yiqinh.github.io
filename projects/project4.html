@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project 3: [Auto]Stitching Photo Mosaics</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    
+    <!-- MathJax for rendering mathematical equations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    
+    <style>
+        .equation-container {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background-color: #f5f5f5;
+            border-radius: 8px;
+            overflow-x: auto;
+        }
+        
+        .equation-container .MathJax {
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <h1><a href="../index.html" class="home-link">Yiqin Huang</a></h1>
+            <a href="../index.html#projects">Back to Projects</a>
+        </nav>
+    </header>
+
+    <main class="container project-page">
+        <h2>Project 4: Neural Radiance Field!</h2>
+        
+        <hr>
+
+        <h3>Part 0: Calibrating Your Camera and Capturing a 3D Scan</h3>
+
+        <section>
+            <h4>Part 0.1: Calibrating Your Camera</h4>
+            <p> 
+                I calibrated the camera by capturing 30 images of ArUco tags. 
+                The script detects the 2D corner coordinates of the tags 
+                in each image and maps them to their known 3D world coordinates. 
+                Using these correspondences, 
+                I computed the camera's intrinsic matrix and distortion coefficients with OpenCV's 
+                cv2.calibrateCamera() function.            
+            </p>
+            
+            <div class="results-gallery">
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_4/aruco_1.jpeg" class="profile-pic">
+                    <figcaption>Tags 1</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_4/aruco_1.jpeg" class="profile-pic">
+                    <figcaption>Tags 2</figcaption>
+                </figure>
+            </div>
+
+            <hr>
+
+            <h4>Part 0.2: Capturing a 3D Object Scan</h4>
+            <p> 
+                I constructed the training dataset by placing my target object next to a single printed ArUco tag, 
+                which serves as a reference for calculating camera poses. Using the same calibrated camera and zoom 
+                level from the previous step, I captured around 50 images. 
+                I systematically moved around the object, acquiring views from various horizontal and vertical angles       
+            </p>
+            <div class="results-gallery">
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_4/vb_1.jpeg" class="profile-pic">
+                    <figcaption>Scan 1</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_4/vb_1.jpeg" class="profile-pic">
+                    <figcaption>Scan 2</figcaption>
+                </figure>
+            </div>
+
+            <hr>
+
+            <h4>Part 0.3: Estimating Camera Pose</h4>
+            <p> 
+                To estimate the pose for each image, 
+                I solved the PnP problem. 
+                I detected the 2D pixel coordinates of the ArUco tag corners and mapped 
+                them to their known 3D world coordinates. Using the intrinsic matrix (K) from calibration, 
+                I fed these 2D/3D correspondences into cv2.solvePnP() 
+                to find the rotation and translation vectors. I then inverted this 
+                extrinsic matrix to get the final camera to world (c2w) 
+                transformation for each image and visualized the resulting camera frustums.
+            </p>
+            <div class="results-gallery">
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_4/frustum_side.png" class="profile-pic">
+                    <figcaption>Side View</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_4/frustum_top.png" class="profile-pic">
+                    <figcaption>Top View</figcaption>
+                </figure>
+            </div>
+
+            <hr>
+
+            <h4>Part 0.4: Undistorting images and creating a dataset</h4>
+            <p> 
+                Next, I undistorted all images using cv2.undistort() with the calibrated intrinsics from earlier.
+            </p>
+            <div class="results-gallery">
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_4/undistort.png" class="pic">
+                    <figcaption>Original vs Undistorted Image</figcaption>
+                </figure>
+
+            </div>
+
+        </section>
+
+            <hr>
+
+            <h3>Part 1: Fit a Neural Field to a 2D Image</h3>
+            <div class="results-gallery">
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_4/mlp_img.jpg" class="pic">
+                    <figcaption>MLP Architecture</figcaption>
+                </figure>
+            </div>
+            
+            <p>
+                For this part, I implemented a 2D neural network to fit a 
+                single image, effectively mapping 2D pixel coordinates to an RGB color.
+                To enable the network to learn high frequency details, 
+                I first transformed the input coordinates using sinusoidal positional encoding.
+                The network was trained on batches of randomly sampled pixels from the image, 
+                using an Adam optimizer to minimize the Mean Squared Error.
+            </p>
+
+            <h4>Hyperparameters</h4>
+            <p>
+                I used a model with 4 Linear Layers, with width 256. I used an Adam optimizer with learning rate of 1e-2.
+                I used a positional encoding L value of 10.
+            </p>
+
+            <div class="results-gallery">
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_4/coyote_training_progression.png" class="pic">
+                    <figcaption>Test Image Training Progression</figcaption>
+                </figure>
+            </div>
+
+        <section>
+
+        </section>
+
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Yiqin Huang. All rights reserved.</p>
+    </footer>
+</body>
+</html>
