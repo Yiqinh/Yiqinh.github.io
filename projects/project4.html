@@ -329,11 +329,11 @@
 
             <div class="results-gallery">
                 <figure>
-                    <img src="https://Yiqinh.github.io/pictures/proj_4/psnr_training_lego.png" class="pic">
+                    <img src="https://Yiqinh.github.io/pictures/proj_4/psnr_training_lego.png" class="profile-pic">
                     <figcaption></figcaption>
                 </figure>
                 <figure>
-                    <img src="https://Yiqinh.github.io/pictures/proj_4/psnr_validation_lego.png" class="pic">
+                    <img src="https://Yiqinh.github.io/pictures/proj_4/psnr_validation_lego.png" class="profile-pic">
                     <figcaption></figcaption>
                 </figure>
             </div>
@@ -355,9 +355,72 @@
             <div class="results-gallery">
                 <figure>
                     <img src="https://Yiqinh.github.io/pictures/proj_4/volleyball_2.gif" alt="GIF">
-                    <figcaption>Lego 360</figcaption>
+                    <figcaption>Volleyball 360</figcaption>
                 </figure>
             </div>
+
+            <hr>
+
+            <hr4>Discussion</hr4>
+
+            <p><strong>Key Hyperparameters:</strong></p>
+            <ul>
+                <li>PE (L) for X: 20</li>
+                <li>PE (L) for ray_d: 20</li>
+                <li>near=2.0, far=6.0</li>
+                <li>1000 Iterations 10k Batch</li>
+                <li>Downscaling Images</li>
+            </ul>
+
+            <p>I found that increasing the dimension of the frequency positional encoding substantially improved my image. I found lower values of L struggled to represent higher frequencies like the rounded shape of the volleyball as well as the blue stripes on it.</p>
+
+            <p>I kept the same near and far values because the visualized sampled points in viser seemed to be within the scene.</p>
+
+            <p>I initially trained on 5k and 10k iterations. However, I found significant traces of overfitting like black spots across the image. The validation PSNR also stopped improving substantially after around 1000 iterations.</p>
+
+            <h4>
+                Training Progression
+            </h4>
+
+            <div class="results-gallery">
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_4/vb/val_img[0]_iter_00000.png" class="profile-pic">
+                    <figcaption>Iteration 0</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_4/vb/val_img[0]_iter_00200.png" class="profile-pic">
+                    <figcaption>Iteration 200</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_4/vb/val_img[0]_iter_00400.png" class="profile-pic">
+                    <figcaption>Iteration 400</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_4/vb/val_img[0]_iter_00600.png" class="profile-pic">
+                    <figcaption>Iteration 600</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_4/vb/val_img[0]_iter_00800.png" class="profile-pic">
+                    <figcaption>Iteration 800</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_4/vb/val_img[0]_iter_01000.png" class="profile-pic">
+                    <figcaption>Iteration 1000</figcaption>
+                </figure>  
+            </div>
+
+
+            <div class="results-gallery">
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_4/loss_training_vb.png" class="profile-pic">
+                    <figcaption></figcaption>
+                </figure>
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_4/psnr_validation_vb.png" class="profile-pic">
+                    <figcaption></figcaption>
+                </figure>
+            </div>
+
         </section>
 
 
