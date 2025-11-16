@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project 3: [Auto]Stitching Photo Mosaics</title>
+    <title>Project 4: Neural Radiance Field!</title>
     <link rel="stylesheet" href="../assets/css/style.css">
     
     <!-- MathJax for rendering mathematical equations -->
@@ -213,6 +213,145 @@
                 </figure>
             </div>
 
+        </section>
+
+        <hr>
+
+        <section>
+            <h3>Part 2: Fit a Neural Radiance Field from Multi-view Images</h3>
+
+            <h4>Part 2.1: Create Rays from Cameras</h4>
+
+            <p>
+                For this part, I implemented the ray generation pipeline to convert 2D pixel coordinates into 
+                3D rays in world space. First, I created a function to back project pixel 
+                coordinates (u, v) to 3D points in the camera's coordinate system (x_c, y_c, z_c). 
+                This was done by inverting the pinhole camera equation using the intrinsic matrix K. Next, 
+                I implemented the camera to world (c2w) transformation, 
+                which applies the extrinsic matrix [R|t] to map 3D points from the camera frame to the world frame.
+                Finally, I combined these steps into a pixel_to_ray function.
+            </p>
+
+            <h4>
+                Part 2.2: Sampling
+            </h4>
+            <p>
+                 I first created a batch of rays by randomly sampling N pixel coordinates 
+                 from the entire training dataset. I then used my pixel_to_ray function and the corresponding 
+                 c2w matrix to generate ray_o and ray_d. Next, 
+                 I discretized each ray by dividing the segment between the near and far bounds into 64 bins parameterized by t. 
+                 Finally, I computed the 3D coordinates for each sampled point using p = ray_o + t * ray_d
+            </p>
+
+            <h4>
+                Part 2.3: Putting the Dataloading All Together
+            </h4>
+
+            <p>
+                To train the NeRF model, I implemented a dataloader and visualized the rays and points.
+            </p>
+
+            <div class="results-gallery">
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_4/random_rays.png" class="pic">
+                    <figcaption>100 Randomly Sampled Ray Points (Lego) </figcaption>
+                </figure>
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_4/one_img_rays.png" class="pic">
+                    <figcaption>100 Ray Points from One Image (Lego) </figcaption>
+                </figure>
+            </div>
+
+            <h4>
+                Part 2.4: Neural Radiance Field
+            </h4>
+            <div class="results-gallery">
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_4/mlp_nerf.png" class="pic">
+                    <figcaption>NeRF Network Design</figcaption>
+                </figure>
+            </div>
+
+            <p>
+                This network differs from the 2D version as it maps a 3D coordinate (x,y,z) 
+                and a 3D view direction (d_x, d_y, d_z) to a volume density (sigma) 
+                and a color (r,g,b).Both inputs were first passed through positional encoding (PE), 
+                using a higher frequency (L=10) for coordinates and a lower frequency (L=4) for view directions.
+            </p>
+
+            <h4>
+                Part 2.5: Volume Rendering
+            </h4>
+            <div class="results-gallery">
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_4/volume.png" class="pic">
+                    <figcaption></figcaption>
+                </figure>
+            </div>
+
+            <p>
+                Volume rendering takes the sequence of predicted colors (c_i) and densities (sigma_i) 
+                from the MLP for all points along a single ray. It calculates the alpha value (alpha_i) for each point, 
+                which represents the probability 
+                of the ray terminating at that sample. Next, it computes transmittance (T_i), 
+                which is calculated as the product of the (1 - alpha) values of all preceding samples.
+                Finally, the total pixel color is computed as the weighted sum of all sample colors.
+            </p>
+
+            <hr>
+
+            <h4>
+                Rendering Results
+            </h4>
+
+            <div class="results-gallery">
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_4/val_img[0]_iter_00000.png" class="profile-pic">
+                    <figcaption>Iteration 0</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_4/val_img[0]_iter_00100.png" class="profile-pic">
+                    <figcaption>Iteration 100</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_4/val_img[0]_iter_00200.png" class="profile-pic">
+                    <figcaption>Iteration 200</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_4/val_img[0]_iter_00300.png" class="profile-pic">
+                    <figcaption>Iteration 300</figcaption>
+                </figure>
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_4/val_img[0]_iter_01999.png" class="profile-pic">
+                    <figcaption>Iteration 2000</figcaption>
+                </figure>  
+            </div>
+
+            <div class="results-gallery">
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_4/psnr_training_lego.png" class="pic">
+                    <figcaption></figcaption>
+                </figure>
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_4/psnr_validation_lego.png" class="pic">
+                    <figcaption></figcaption>
+                </figure>
+            </div>
+
+            <h4>The Result:</h4>
+            <div class="results-gallery">
+                <figure>
+                    <img src="https://Yiqinh.github.io/pictures/proj_4/lego_rotation.gif" alt="GIF">
+                    <figcaption>Lego 360</figcaption>
+                </figure>
+            </div>
+
+        </section>
+
+        <hr>
+
+        <section>
+            <h3>Part 2.6: Training with your own data</h3>
         </section>
 
 
