@@ -204,10 +204,21 @@
         <h4>1.6 Classifier-Free Guidance (CFG)</h4>
 
         <p>
-            
+            In this part, I implemented Classifier-Free Guidance (CFG) to fix 
+            the low quality of the previous images. 
+            I updated the denoising function to calculate a weighted mix of conditional and unconditional noise estimates.
+            I use a null prompt for the unconditioned denoising.
         </p>
 
+        <div class="results-gallery">
+            <figure>
+                <img src="https://Yiqinh.github.io/pictures/proj_5/cfg_sample.png" class="pic">
+                <figcaption>5 Sampled Images with CFG (Scale=7) </figcaption>
+            </figure>
+        </div>
 
+        <h4>1.7 Image-to-image Translation</h4>
+        
 
     </main>
 
