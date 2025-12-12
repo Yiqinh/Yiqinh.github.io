@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project 5: Fun With Diffusion Models!</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    
+    <!-- MathJax for rendering mathematical equations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    
+    <style>
+        .equation-container {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background-color: #f5f5f5;
+            border-radius: 8px;
+            overflow-x: auto;
+        }
+        
+        .equation-container .MathJax {
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <h1><a href="../index.html" class="home-link">Yiqin Huang</a></h1>
+            <a href="../index.html#projects">Back to Projects</a>
+        </nav>
+    </header>
+
+    <main class="container project-page">
+        <h2>Project 5: Fun With Diffusion Models!</h2>
+        
+        <hr>
+
+        <h2>Part 0: Play with DeepFloyd!</h2>
+
+        <h3>20 Inference Steps</h3>
+
+        <div class="results-gallery">
+            <figure>
+                <img src="https://Yiqinh.github.io/pictures/proj_4/generated_images/steps_20/download.png" class="profile-pic">
+                <figcaption>a Formula 1 race car</figcaption>
+            </figure>
+            <figure>
+                <img src="https://Yiqinh.github.io/pictures/proj_4/generated_images/steps_20/download (1).png" class="profile-pic">
+                <figcaption>two Formula 1 race cars racing side by side</figcaption>
+            </figure>
+            <figure>
+                <img src="https://Yiqinh.github.io/pictures/proj_4/generated_images/steps_20/download (2).png" class="profile-pic">
+                <figcaption>an airplane taking off</figcaption>
+            </figure>
+            <figure>
+                <img src="https://Yiqinh.github.io/pictures/proj_4/generated_images/steps_20/download (3).png" class="profile-pic">
+                <figcaption>two airplanes taking off side by side</figcaption>
+            </figure>
+            <figure>
+                <img src="https://Yiqinh.github.io/pictures/proj_4/generated_images/steps_20/download (4).png" class="profile-pic">
+                <figcaption>Apple iPhone 30 pro max</figcaption>
+            </figure>
+            <figure>
+                <img src="https://Yiqinh.github.io/pictures/proj_4/generated_images/steps_20/download (5).png" class="profile-pic">
+                <figcaption>Mango flavored ice cream</figcaption>
+            </figure>
+        </div>
+
+        <h3>100 Inference Steps</h3>
+
+        <div class="results-gallery">
+            <figure>
+                <img src="https://Yiqinh.github.io/pictures/proj_4/generated_images/steps_100/download (6).png" class="profile-pic">
+                <figcaption>a Formula 1 race car</figcaption>
+            </figure>
+            <figure>
+                <img src="https://Yiqinh.github.io/pictures/proj_4/generated_images/steps_100/download.png" class="profile-pic">
+                <figcaption>two Formula 1 race cars racing side by side</figcaption>
+            </figure>
+            <figure>
+                <img src="https://Yiqinh.github.io/pictures/proj_4/generated_images/steps_100/download (1).png" class="profile-pic">
+                <figcaption>an airplane taking off</figcaption>
+            </figure>
+            <figure>
+                <img src="https://Yiqinh.github.io/pictures/proj_4/generated_images/steps_100/download (2).png" class="profile-pic">
+                <figcaption>two airplanes taking off side by side</figcaption>
+            </figure>
+            <figure>
+                <img src="https://Yiqinh.github.io/pictures/proj_4/generated_images/steps_100/download (3).png" class="profile-pic">
+                <figcaption>Apple iPhone 30 pro max</figcaption>
+            </figure>
+            <figure>
+                <img src="https://Yiqinh.github.io/pictures/proj_4/generated_images/steps_100/download (4).png" class="profile-pic">
+                <figcaption>Mango flavored ice cream</figcaption>
+            </figure>
+        </div>
+
+        <p> *Random Seed: 67</p>
+
+        <h4>Thoughts</h4>
+
+        <p>
+            The number of inference steps significantly influences the quality of the output. While a mere 20 steps is enough to get the general idea of the prompt, 
+            the model is oftentimes hallucinating artifacts and mixing up different ideas in the prompt. The geometry of the image is often distorted and conflicted. 
+            When the inference steps is up to 100, the quality significantly improves. The distorted look of the earlier images is almost completely gone. All the pictures look more realistic.
+            However, I noticed that the generated images look much closer to training images (existing pictures) than what I am describing in the prompts. Maybe there is slight overfitting here.
+        </p>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Yiqin Huang. All rights reserved.</p>
+    </footer>
+</body>
+</html>
