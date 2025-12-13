@@ -347,10 +347,41 @@
         <h4>1.8 Visual Anagrams</h4>
 
         <p>
-            
+            I implemented Visual Anagrams to create optical illusions where an image reveals a completely different subject when flipped upside down. I modified the denoising process to compute noise estimates for two separate 
+            prompts, one for the upright image and one for the flipped version, and then 
+            averaged them together. This forced the diffusion model to 
+            generate a single image that visually satisfies both prompts simultaneously.
         </p>
 
-        
+        <div class="results-gallery">
+            <figure>
+                <img src="https://Yiqinh.github.io/pictures/proj_5/gnome.png" class="pic">
+                <figcaption>Prompts: "oil painting of an ice cream cone" vs "oil painting of a happy garden gnome" vs </figcaption>
+            </figure>
+        </div>
+
+        <div class="results-gallery">
+            <figure>
+                <img src="https://Yiqinh.github.io/pictures/proj_5/beer.png" class="pic">
+                <figcaption>Prompts: "oil painting of a pint of beer" vs "oil painting of a chandelier"</figcaption>
+            </figure>
+        </div>
+
+        <div class="results-gallery">
+            <figure>
+                <img src="https://Yiqinh.github.io/pictures/proj_5/pineapple_anagram.png" class="pic">
+                <figcaption>Prompts: "a pineapple" vs "a rocketship taking off"</figcaption>
+            </figure>
+        </div>
+
+        <h4>1.9 Hybrid Images</h4>
+
+        <p>
+            In this section,
+            I implemented Factorized Diffusion to create hybrid images that change appearance based on viewing distance. 
+            This involved estimating noise for two separate prompts and mixing them by applying a low pass filter to one and a high pass filter to the other. 
+            The resulting composite noise estimate produced an image that combines the low frequency structure of one prompt with the high frequency details of the other.
+        </p>
 
 
 
