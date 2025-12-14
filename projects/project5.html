@@ -420,6 +420,101 @@
 
         <h3>Part B: Flow Matching from Scratch!</h3>
 
+        <h4>1.2 Using the UNet to Train a Denoiser</h4>
+
+        <p>
+            In this part, we generate the training data pairs and add noise to clean images. We vary the amount of noise per training image by adjusting sigma.
+        </p>
+
+        <div class="results-gallery">
+            <figure>
+                <img src="https://Yiqinh.github.io/pictures/proj_5/noising_process.png" class="pic">
+                <figcaption>Varying levels of noising</figcaption>
+            </figure>
+        </div>
+
+        <h4>1.2.1 Training</h4>
+
+        <p>
+            In this next part, we use the noisy images to train a simple denoising network. We use a hard coded noise sigma of 0.5 to train.
+        </p>
+
+        <div class="results-gallery">
+            <figure>
+                <img src="https://Yiqinh.github.io/pictures/proj_5/simple_epoch_1.png" class="pic">
+                <figcaption>Epoch 1: sample denoising results on test set</figcaption>
+            </figure>
+            <figure>
+                <img src="https://Yiqinh.github.io/pictures/proj_5/simple_epoch_5.png" class="pic">
+                <figcaption>Epoch 5: sample denoising results on test set</figcaption>
+            </figure>
+        </div>
+
+
+        <div class="results-gallery">
+            <figure>
+                <img src="https://Yiqinh.github.io/pictures/proj_5/simple_training.png" class="pic">
+                <figcaption>Training Loss Curve</figcaption>
+            </figure>
+        </div>
+
+        <h4>1.2.2 Out-of-Distribution Testing</h4>
+
+        <p>
+            We trained our denoising model on a hard coded noise sigma of 0.5. Here, we test how well our model does on out of distribution noise values. We vary the sigma value in the test dataset and see how the model performs.
+        </p>
+
+        <div class="results-gallery">
+            <figure>
+                <img src="https://Yiqinh.github.io/pictures/proj_5/ood.png" class="pic">
+                <figcaption>Out of distribution noise values (test set)</figcaption>
+            </figure>
+        </div>
+
+       <h4>1.2.3 Denoising Pure Noise</h4> 
+
+       <p>
+        To make our model "generative", we have it denoise pure noise images to generate new digits.
+        We create training pairs between complete gaussian noise and the clean images, and try to teach the model the transform the pure noise images into a clean image from the MNIST distribution.
+       </p>
+
+        <div class="results-gallery">
+            <figure>
+                <img src="https://Yiqinh.github.io/pictures/proj_5/pure_noise_epoch_1.png" class="pic">
+                <figcaption>Epoch 1: Denoising Pure Noise</figcaption>
+            </figure>
+            <figure>
+                <img src="https://Yiqinh.github.io/pictures/proj_5/pure_noise_epoch_5.png" class="pic">
+                <figcaption>Epoch 5: Denoising Pure Noise</figcaption>
+            </figure>
+        </div>
+
+        <div class="results-gallery">
+            <figure>
+                <img src="https://Yiqinh.github.io/pictures/proj_5/pure_noise_train.png" class="pic">
+                <figcaption>Training Loss Curve (Pure Noise)</figcaption>
+            </figure>
+        </div>
+
+        <p>
+            From the images generated from pure noise, we can see that they are blurry regardless of the number of epochs, despite the training loss decreasing initially.
+            The training loss gets stuck and struggles to decrease after a little bit. This is primarily because we are using all classses to train, and we are using the Mean squared error criteria.
+            The MSE loss tries to minimize the distance to all the training samples, leading the model learn the average of all the classes. Thus, the images generated are very blurry and do not resemble any one particular class.
+            The generated images kind of look like a mix of "6", "8", and "9". 
+        </p>
+
+        <hr>
+
+        <h4>Part 2: Training a Flow Matching Model</h4>
+
+
+
+
+
+
+
+
+
 
     </main>
 
