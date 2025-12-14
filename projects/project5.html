@@ -507,14 +507,117 @@
 
         <h4>Part 2: Training a Flow Matching Model</h4>
 
+        <p>
+            In this section, we iteratively denoise based on a time conditioned UNet. This flow matching model will be conditioned on a time variable T. With this, we can iteratively clean noisy images until we get the images we want.
+        </p>
+
+        <h4>2.2 Training the UNet</h4>
+
+        <p>
+            The training objective was to predict the vector field (flow) that maps random Gaussian noise (x_0) to clean data (x_1). For each training step, I sampled a clean image from the training set, a noise vector x_0 (gaussian), 
+            and a random time step t from Uniform[0, 1]. 
+            I then constructed the intermediate noisy state x_t using linear interpolation: x_t = (1-t)x_0 + tx_1.
+            Through this, the model was able to learn the flow direction.
+        </p>
+
+        <div class="results-gallery">
+            <figure>
+                <img src="https://Yiqinh.github.io/pictures/proj_5/time_training.png" class="pic">
+                <figcaption>Training Loss Curve 10 Epochs (Time Conditioned Flow Model)</figcaption>
+            </figure>
+        </div>
+
+        <h4>2.3 Sampling from the UNet</h4>
+
+        <p> 
+            We can sample from this time conditioned flow model. However, the results are not perfect without class conditioning. Here are some examples from various epochs.
+        </p>
+
+        <div class="results-gallery">
+            <figure>
+                <img src="https://Yiqinh.github.io/pictures/proj_5/time_epoch_1.png" class="pic">
+                <figcaption>Epoch 1 Samples</figcaption>
+            </figure>
+            <figure>
+                <img src="https://Yiqinh.github.io/pictures/proj_5/time_epoch_5.png" class="pic">
+                <figcaption>Epoch 5 Samples</figcaption>
+            </figure>
+            <figure>
+                <img src="https://Yiqinh.github.io/pictures/proj_5/time_epoch_10.png" class="pic">
+                <figcaption>Epoch 10 Samples</figcaption>
+            </figure>
+        </div>
+
+        <h4>2.4 Adding Class-Conditioning to UNet</h4>
+
+        <p>
+            To improve generation quality and controllability, I conditioned the UNet on the digit class by encoding the labels as one hot vectors and passing them through additional fully connected blocks. 
+            I also incorporated a dropout mechanism that zeroes out the class conditioning signal 10% of the time, 
+            ensuring the model supports classifier free guidance for unconditional generation.
+        </p>
+
+        <h4>2.5 Training the UNet</h4>
+
+        <div class="results-gallery">
+            <figure>
+                <img src="https://Yiqinh.github.io/pictures/proj_5/class_training.png" class="pic">
+                <figcaption>Training Loss Curve 10 Epochs (Class Conditioned Flow Model)</figcaption>
+            </figure>
+        </div>
+
+        <h4>2.6 Sampling from the UNet</h4>
+
+        <p> 
+            Here, we use CFG with a scale of 5.0.
+        </p>
+
+        <div class="results-gallery">
+            <figure>
+                <img src="https://Yiqinh.github.io/pictures/proj_5/class_epoch_1.png" class="pic">
+                <figcaption>Epoch 1 Samples</figcaption>
+            </figure>
+            <figure>
+                <img src="https://Yiqinh.github.io/pictures/proj_5/class_epoch_5.png" class="pic">
+                <figcaption>Epoch 5 Samples</figcaption>
+            </figure>
+            <figure>
+                <img src="https://Yiqinh.github.io/pictures/proj_5/class_epoch_10.png" class="pic">
+                <figcaption>Epoch 10 Samples</figcaption>
+            </figure>
+        </div>
 
 
+        <h4>Getting rid of the annoying learning rate scheduler</h4>
 
+        <p>
+            The previous learning rate of 1e-2 was very aggressive, 
+            which is why it required a scheduler to decay it rapidly so the model could converge. 
+            By switching to a constant, smaller learning rate (1e-4), 
+            the training becomes stable enough to converge smoothly without needing complex decay logic.
+            In the examples below, using a small constant learning rate generates good results.
+        </p>
 
+        <div class="results-gallery">
+            <figure>
+                <img src="https://Yiqinh.github.io/pictures/proj_5/schedule_train.png" class="pic">
+                <figcaption>No Scheduler Train Loss 10 Epochs (Class Conditioned Flow Model)</figcaption>
+            </figure>
+        </div>
 
-
-
-
+        <div class="results-gallery">
+            <figure>
+                <img src="https://Yiqinh.github.io/pictures/proj_5/schedule_epoch_1.png" class="pic">
+                <figcaption>Epoch 1 Samples</figcaption>
+            </figure>
+            <figure>
+                <img src="https://Yiqinh.github.io/pictures/proj_5/schedule_epoch_5.png" class="pic">
+                <figcaption>Epoch 5 Samples</figcaption>
+            </figure>
+            <figure>
+                <img src="https://Yiqinh.github.io/pictures/proj_5/schedule_epoch_10.png" class="pic">
+                <figcaption>Epoch 10 Samples</figcaption>
+            </figure>
+        </div>
 
     </main>
 
